@@ -28,7 +28,7 @@ print("[+] Server is listening on port 8080...")
 client, addr = server.accept()
 print(f"[+] Connection established with {addr}")
 
-try:
+try:  # try exception to error handle
     print("[*] Receiving metadata...")
     buffer = b""
     while b"<META_END>" not in buffer:
@@ -95,9 +95,9 @@ try:
         print("[!] Hash mismatch! The file may be corrupted.")
         print(f"Computed Hash: {computed_hash}, Expected Hash: {received_hash}")
 
-except Exception as e:
+except Exception as e:  # catch exception
     print(f"Error in receiving file: {str(e)}")
-finally:
+finally:  # closing connection
     client.close()
     server.close()
     print("[+] Connection closed.")
